@@ -2,11 +2,12 @@
 
 :root {
   --font-size: 16px;
-  /* Premium Restaurant Color Palette */
+  /* Madame Lân Brand Color Palette */
   --ivory: #F8F6F1;
   --warm-white: #FDFCFA;
-  --deep-bronze: #6B5744;
+  --brand-red: #A82825;
   --charcoal: #2B2826;
+  --warm-brown: #8B6F47;
   --muted-gold: #C4A574;
 
   --background: var(--warm-white);
@@ -15,9 +16,9 @@
   --card-foreground: var(--charcoal);
   --popover: var(--warm-white);
   --popover-foreground: var(--charcoal);
-  --primary: var(--deep-bronze);
+  --primary: var(--brand-red);
   --primary-foreground: var(--warm-white);
-  --secondary: var(--muted-gold);
+  --secondary: var(--warm-brown);
   --secondary-foreground: var(--charcoal);
   --muted: var(--ivory);
   --muted-foreground: #5A5450;
@@ -25,13 +26,13 @@
   --accent-foreground: var(--charcoal);
   --destructive: #d4183d;
   --destructive-foreground: #ffffff;
-  --border: rgba(107, 87, 68, 0.15);
+  --border: rgba(139, 111, 71, 0.15);
   --input: transparent;
   --input-background: var(--ivory);
   --switch-background: #cbced4;
   --font-weight-medium: 500;
   --font-weight-normal: 400;
-  --ring: var(--deep-bronze);
+  --ring: var(--brand-red);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);

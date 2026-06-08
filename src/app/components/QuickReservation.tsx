@@ -9,6 +9,14 @@ export default function QuickReservation() {
     phone: ""
   });
 
+  const quickOptions = [
+    { label: "Today", value: "today" },
+    { label: "Tonight", value: "tonight" },
+    { label: "2 Guests", value: "2" },
+    { label: "Family", value: "family" },
+    { label: "Group", value: "group" }
+  ];
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Reservation request:", formData);
@@ -33,9 +41,27 @@ export default function QuickReservation() {
           onSubmit={handleSubmit}
           className="bg-white rounded-3xl p-8 shadow-2xl"
           style={{
-            boxShadow: "0 20px 60px rgba(43, 40, 38, 0.12)"
+            boxShadow: "0 20px 60px rgba(168, 40, 37, 0.12)"
           }}
         >
+          {/* Quick Options */}
+          <div className="flex flex-wrap gap-2 mb-6">
+            {quickOptions.map((option) => (
+              <button
+                key={option.label}
+                type="button"
+                className="px-4 py-2 rounded-full text-sm transition-all hover:bg-opacity-90"
+                style={{
+                  backgroundColor: "var(--ivory)",
+                  color: "var(--charcoal)",
+                  border: "1px solid var(--border)"
+                }}
+              >
+                {option.label}
+              </button>
+            ))}
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-6 gap-4 items-end">
             {/* Date */}
             <div className="md:col-span-1">
@@ -179,10 +205,11 @@ export default function QuickReservation() {
             <div className="md:col-span-1">
               <button
                 type="submit"
-                className="w-full px-6 py-3 rounded-lg transition-all hover:opacity-90"
+                className="w-full px-6 py-3 rounded-lg transition-all hover:opacity-90 shadow-md"
                 style={{
-                  backgroundColor: "var(--deep-bronze)",
-                  color: "var(--warm-white)"
+                  backgroundColor: "var(--brand-red)",
+                  color: "var(--warm-white)",
+                  fontWeight: "600"
                 }}
               >
                 Gửi yêu cầu

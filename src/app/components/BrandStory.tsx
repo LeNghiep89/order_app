@@ -4,15 +4,15 @@ export default function BrandStory() {
   const features = [
     {
       number: "01",
-      text: "Ẩm thực Việt tinh tế"
+      text: "Công thức gia truyền từ miền Trung"
     },
     {
       number: "02",
-      text: "Không gian tiếp khách trang trọng"
+      text: "Tinh thần hiếu khách Việt Nam"
     },
     {
       number: "03",
-      text: "Phù hợp gia đình & khách quốc tế"
+      text: "Không gian ấm cúng cho mọi thế hệ"
     }
   ];
 
@@ -57,7 +57,7 @@ export default function BrandStory() {
           <div>
             <p
               className="text-sm tracking-widest uppercase mb-4"
-              style={{ color: "var(--deep-bronze)" }}
+              style={{ color: "var(--brand-red)", fontWeight: "600" }}
             >
               CÂU CHUYỆN MADAME LÂN
             </p>
@@ -71,7 +71,7 @@ export default function BrandStory() {
                 color: "var(--charcoal)"
               }}
             >
-              Tinh hoa ẩm thực Việt trong không gian sang trọng
+              Nơi hương vị Việt truyền thống gặp gỡ tinh thần hiếu khách
             </h2>
 
             <p
@@ -83,7 +83,7 @@ export default function BrandStory() {
                 maxWidth: "480px"
               }}
             >
-              Madame Lân mang đến trải nghiệm ẩm thực Việt được chăm chút từ hương vị đến không gian, phù hợp cho gia đình, khách quốc tế và những buổi gặp mặt quan trọng.
+              Madame Lân không chỉ là nhà hàng - đây là nơi những công thức gia truyền từ miền Trung Việt Nam được gìn giữ và tôn vinh. Mỗi món ăn đều mang trong mình câu chuyện về văn hóa ẩm thực và tinh thần mến khách của người Việt.
             </p>
 
             {/* Premium Feature Rows */}
@@ -126,8 +126,8 @@ export default function BrandStory() {
               className="px-6 py-3 rounded-md transition-all hover:bg-opacity-90"
               style={{
                 backgroundColor: "transparent",
-                color: "var(--deep-bronze)",
-                border: "1.5px solid var(--deep-bronze)"
+                color: "var(--warm-brown)",
+                border: "1.5px solid var(--warm-brown)"
               }}
             >
               Khám phá câu chuyện

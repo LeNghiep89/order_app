@@ -41,7 +41,7 @@ export default function ReviewsTrust() {
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <p
             className="text-sm tracking-widest uppercase mb-4"
-            style={{ color: "var(--deep-bronze)" }}
+            style={{ color: "var(--brand-red)" }}
           >
             ĐÁNH GIÁ TỪ KHÁCH HÀNG
           </p>
@@ -118,7 +118,7 @@ export default function ReviewsTrust() {
                   className="inline-block px-3 py-1 rounded-full text-xs tracking-wide mb-2"
                   style={{
                     backgroundColor: "var(--ivory)",
-                    color: "var(--deep-bronze)",
+                    color: "var(--brand-red)",
                     border: "1px solid var(--border)"
                   }}
                 >
@@ -135,6 +135,38 @@ export default function ReviewsTrust() {
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Trust Badges */}
+        <div className="flex justify-center gap-8 mb-8">
+          <div className="text-center">
+            <div
+              className="w-16 h-16 rounded-full mx-auto mb-2 flex items-center justify-center"
+              style={{
+                backgroundColor: "var(--ivory)",
+                border: "2px solid var(--border)"
+              }}
+            >
+              <span style={{ fontSize: "24px" }}>G</span>
+            </div>
+            <p className="text-xs" style={{ color: "var(--muted-foreground)" }}>
+              Google Reviews
+            </p>
+          </div>
+          <div className="text-center">
+            <div
+              className="w-16 h-16 rounded-full mx-auto mb-2 flex items-center justify-center"
+              style={{
+                backgroundColor: "var(--ivory)",
+                border: "2px solid var(--border)"
+              }}
+            >
+              <span style={{ fontSize: "24px" }}>T</span>
+            </div>
+            <p className="text-xs" style={{ color: "var(--muted-foreground)" }}>
+              TripAdvisor
+            </p>
+          </div>
         </div>
 
         {/* Trust Signals */}

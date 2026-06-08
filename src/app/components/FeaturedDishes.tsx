@@ -52,7 +52,7 @@ export default function FeaturedDishes() {
             <div className="max-w-2xl">
               <p
                 className="text-sm tracking-widest uppercase mb-4"
-                style={{ color: "var(--deep-bronze)" }}
+                style={{ color: "var(--brand-red)" }}
               >
                 MÓN ĂN ĐẶC TRƯNG
               </p>
@@ -72,7 +72,7 @@ export default function FeaturedDishes() {
             <button
               className="px-8 py-3.5 rounded-md transition-all hover:opacity-90 flex-shrink-0"
               style={{
-                backgroundColor: "var(--deep-bronze)",
+                backgroundColor: "var(--brand-red)",
                 color: "var(--warm-white)"
               }}
             >
@@ -115,7 +115,7 @@ export default function FeaturedDishes() {
                   className="inline-block px-3 py-1 rounded-full text-xs tracking-wide mb-3"
                   style={{
                     backgroundColor: "var(--warm-white)",
-                    color: "var(--deep-bronze)",
+                    color: "var(--brand-red)",
                     border: "1px solid var(--border)"
                   }}
                 >

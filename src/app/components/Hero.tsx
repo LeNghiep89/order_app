@@ -7,6 +7,12 @@ export default function Hero() {
     "Tiệc riêng"
   ];
 
+  const quickShortcuts = [
+    { label: "View Menu", icon: "menu" },
+    { label: "Explore Space", icon: "space" },
+    { label: "Reserve Table", icon: "calendar" }
+  ];
+
   return (
     <section className="relative pt-[88px] overflow-hidden">
       <div
@@ -19,7 +25,7 @@ export default function Hero() {
             {/* Eyebrow */}
             <p
               className="text-sm tracking-widest uppercase mb-6"
-              style={{ color: "var(--deep-bronze)" }}
+              style={{ color: "var(--brand-red)", fontWeight: "600" }}
             >
               Vietnamese Premium Dining · Da Nang
             </p>
@@ -54,42 +60,81 @@ export default function Hero() {
             {/* CTA Group */}
             <div className="flex flex-wrap gap-4 mb-10">
               <button
-                className="px-8 py-3.5 rounded-md transition-all hover:opacity-90"
+                className="px-10 py-4 rounded-md transition-all hover:opacity-90 shadow-md"
                 style={{
-                  backgroundColor: "var(--deep-bronze)",
+                  backgroundColor: "var(--brand-red)",
                   color: "var(--warm-white)",
-                  fontSize: "16px"
+                  fontSize: "17px",
+                  fontWeight: "600"
                 }}
               >
-                Đặt bàn
+                Book a Table
               </button>
               <button
-                className="px-8 py-3.5 rounded-md transition-all hover:bg-opacity-10"
+                className="px-10 py-4 rounded-md transition-all hover:bg-opacity-10"
                 style={{
                   backgroundColor: "transparent",
-                  color: "var(--deep-bronze)",
-                  border: "1.5px solid var(--deep-bronze)",
-                  fontSize: "16px"
+                  color: "var(--charcoal)",
+                  border: "1.5px solid var(--charcoal)",
+                  fontSize: "17px",
+                  fontWeight: "500"
                 }}
               >
-                Xem thực đơn
+                Explore Menu
               </button>
             </div>
 
             {/* Trust Cues */}
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3 mb-8">
               {trustCues.map((cue) => (
                 <span
                   key={cue}
                   className="px-4 py-2 rounded-full text-sm"
                   style={{
                     backgroundColor: "var(--ivory)",
-                    color: "var(--deep-bronze)",
+                    color: "var(--warm-brown)",
                     border: "1px solid var(--border)"
                   }}
                 >
                   {cue}
                 </span>
+              ))}
+            </div>
+
+            {/* Quick Shortcuts */}
+            <div className="flex flex-wrap gap-6">
+              {quickShortcuts.map((shortcut) => (
+                <button
+                  key={shortcut.label}
+                  className="flex items-center gap-2 transition-colors hover:opacity-70"
+                  style={{ color: "var(--charcoal)" }}
+                >
+                  <span
+                    className="w-8 h-8 rounded-full flex items-center justify-center"
+                    style={{
+                      backgroundColor: "var(--ivory)",
+                      border: "1px solid var(--border)"
+                    }}
+                  >
+                    {shortcut.icon === "menu" && (
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M3 12h18M3 6h18M3 18h18" />
+                      </svg>
+                    )}
+                    {shortcut.icon === "space" && (
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                      </svg>
+                    )}
+                    {shortcut.icon === "calendar" && (
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                        <path d="M16 2v4M8 2v4M3 10h18" />
+                      </svg>
+                    )}
+                  </span>
+                  <span className="text-sm font-medium">{shortcut.label}</span>
+                </button>
               ))}
             </div>
           </div>

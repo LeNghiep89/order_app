@@ -55,7 +55,7 @@ export default function DiningExperience() {
         <div className="text-center mb-16 max-w-3xl mx-auto">
           <p
             className="text-sm tracking-widest uppercase mb-4"
-            style={{ color: "var(--deep-bronze)" }}
+            style={{ color: "var(--brand-red)" }}
           >
             TRẢI NGHIỆM TẠI MADAME LÂN
           </p>
@@ -140,12 +140,12 @@ export default function DiningExperience() {
                   style={{
                     backgroundColor: exp.tag === "Private Dining" || exp.tag === "Group Dining"
                       ? "transparent"
-                      : "var(--deep-bronze)",
+                      : "var(--brand-red)",
                     color: exp.tag === "Private Dining" || exp.tag === "Group Dining"
-                      ? "var(--deep-bronze)"
+                      ? "var(--brand-red)"
                       : "var(--warm-white)",
                     border: exp.tag === "Private Dining" || exp.tag === "Group Dining"
-                      ? "1.5px solid var(--deep-bronze)"
+                      ? "1.5px solid var(--brand-red)"
                       : "none"
                   }}
                 >

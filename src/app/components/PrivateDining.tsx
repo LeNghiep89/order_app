@@ -66,7 +66,7 @@ export default function PrivateDining() {
           <div>
             <p
               className="text-sm tracking-widest uppercase mb-4"
-              style={{ color: "var(--deep-bronze)" }}
+              style={{ color: "var(--brand-red)" }}
             >
               TIỆC RIÊNG & SỰ KIỆN
             </p>
@@ -220,7 +220,7 @@ export default function PrivateDining() {
                   type="submit"
                   className="w-full px-6 py-3 rounded-lg transition-all hover:opacity-90"
                   style={{
-                    backgroundColor: "var(--deep-bronze)",
+                    backgroundColor: "var(--brand-red)",
                     color: "var(--warm-white)"
                   }}
                 >
@@ -235,8 +235,8 @@ export default function PrivateDining() {
                 className="px-6 py-3 rounded-md transition-all hover:opacity-90"
                 style={{
                   backgroundColor: "transparent",
-                  color: "var(--deep-bronze)",
-                  border: "1.5px solid var(--deep-bronze)"
+                  color: "var(--brand-red)",
+                  border: "1.5px solid var(--brand-red)"
                 }}
               >
                 Tư vấn tiệc riêng
@@ -245,7 +245,7 @@ export default function PrivateDining() {
                 className="px-6 py-3 rounded-md transition-all hover:underline"
                 style={{
                   backgroundColor: "transparent",
-                  color: "var(--deep-bronze)"
+                  color: "var(--brand-red)"
                 }}
               >
                 Gọi nhà hàng

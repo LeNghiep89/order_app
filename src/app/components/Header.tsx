@@ -71,7 +71,7 @@ export default function Header() {
                       : "opacity-60 hover:opacity-100"
                   }`}
                   style={{
-                    color: language === lang ? "var(--deep-bronze)" : "var(--charcoal)"
+                    color: language === lang ? "var(--brand-red)" : "var(--charcoal)"
                   }}
                 >
                   {lang}
@@ -87,7 +87,7 @@ export default function Header() {
           <button
             className="px-6 py-2.5 rounded-md transition-all hover:opacity-90"
             style={{
-              backgroundColor: "var(--deep-bronze)",
+              backgroundColor: "var(--brand-red)",
               color: "var(--warm-white)"
             }}
           >
