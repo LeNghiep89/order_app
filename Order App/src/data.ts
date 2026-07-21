@@ -1,8 +1,91 @@
 import type { Dish } from './types'
 
-export const CATEGORIES = ['Tất cả', 'Sợi', 'Bánh & Cuốn', 'Gà & Bò', 'Hải sản', 'Đồ uống', 'Tráng miệng']
+export const CATEGORIES = ['Tất cả', 'Combo Ưu Đãi', 'Sợi', 'Bánh & Cuốn', 'Gà & Bò', 'Hải sản', 'Đồ uống', 'Tráng miệng']
 
 export const ALL_DISHES: Dish[] = [
+  {
+    id: 100,
+    name: 'Combo Gia Đình Sum Vầy',
+    desc: 'Trọn vị bữa ăn ấm áp 2-3 người gồm 2 Món chính, 1 Món cuốn & 2 Đồ uống tự chọn',
+    price: 499000,
+    originalPrice: 620000,
+    image: 'https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=500&h=400&fit=crop&auto=format',
+    category: 'Combo Ưu Đãi',
+    isCombo: true,
+    groups: [
+      {
+        id: 'main_group',
+        name: 'Nhóm Món Chính (Chọn 2 món)',
+        requiredQty: 2,
+        options: [
+          { dishId: 1, dishName: 'Phở Bò Tái Chín', image: 'https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=200&h=200&fit=crop', extraPrice: 0, availableModifiers: ['Nhiều hành', 'Không hành', 'Tái nhiều'] },
+          { dishId: 2, dishName: 'Bún Bò Huế', image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=200&h=200&fit=crop', extraPrice: 0, availableModifiers: ['Không cay', 'Ít cay', 'Cay vừa'] },
+          { dishId: 6, dishName: 'Bò Lúc Lắc (Thượng hạng)', image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=200&h=200&fit=crop', extraPrice: 20000, availableModifiers: ['Chín kỹ', 'Bít tết lòng đào'] },
+        ],
+      },
+      {
+        id: 'wrap_group',
+        name: 'Nhóm Bánh & Cuốn (Chọn 1 món)',
+        requiredQty: 1,
+        options: [
+          { dishId: 3, dishName: 'Bánh Hỏi Thịt Nướng', image: 'https://images.unsplash.com/photo-1701480254009-53c2bf8a82ee?w=200&h=200&fit=crop', extraPrice: 0, availableModifiers: ['Nước sốt thêm', 'Không mỡ hành'] },
+          { dishId: 4, dishName: 'Bánh Xèo Miền Trung', image: 'https://images.unsplash.com/photo-1665199021085-d6792847a468?w=200&h=200&fit=crop', extraPrice: 0, availableModifiers: ['Không cay', 'Thêm tôm'] },
+          { dishId: 5, dishName: 'Gỏi Cuốn Tôm Thịt', image: 'https://images.unsplash.com/photo-1560162071-da4c4a91077a?w=200&h=200&fit=crop', extraPrice: 0, availableModifiers: ['Sốt tương đen', 'Không rau mùi'] },
+        ],
+      },
+      {
+        id: 'drink_group',
+        name: 'Nhóm Đồ Uống (Chọn 2 món)',
+        requiredQty: 2,
+        options: [
+          { dishId: 8, dishName: 'Cà Phê Sữa Đá', image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=200&h=200&fit=crop', extraPrice: 0, availableModifiers: ['Ít đá', 'Không đá', 'Ít ngọt'] },
+          { dishId: 9, dishName: 'Nước Chanh Dây', image: 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=200&h=200&fit=crop', extraPrice: 0, availableModifiers: ['Ít đường', 'Không đường'] },
+          { dishId: 11, dishName: 'Nước Ép Ổi', image: 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=200&h=200&fit=crop', extraPrice: 0, availableModifiers: ['Ít đường', 'Thêm đá'] },
+          { dishId: 10, dishName: 'Coca-Cola (Ướp lạnh)', image: 'https://images.unsplash.com/photo-1554866585-cd94860890b7?w=200&h=200&fit=crop', extraPrice: 0, isSoldOut: true },
+        ],
+      },
+    ],
+  },
+  {
+    id: 101,
+    name: 'Combo Yến Tiệc Quảng Nam',
+    desc: 'Yến tiệc thịnh soạn 4-5 người kết hợp hài hòa Món chính, Món nướng & Đồ uống giải nhiệt',
+    price: 799000,
+    originalPrice: 980000,
+    image: 'https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=500&h=400&fit=crop&auto=format',
+    category: 'Combo Ưu Đãi',
+    isCombo: true,
+    groups: [
+      {
+        id: 'starter_group',
+        name: 'Món Khai Vị & Cuốn (Chọn 2 món)',
+        requiredQty: 2,
+        options: [
+          { dishId: 4, dishName: 'Bánh Xèo Miền Trung', image: 'https://images.unsplash.com/photo-1665199021085-d6792847a468?w=200&h=200&fit=crop', extraPrice: 0 },
+          { dishId: 5, dishName: 'Gỏi Cuốn Tôm Thịt', image: 'https://images.unsplash.com/photo-1560162071-da4c4a91077a?w=200&h=200&fit=crop', extraPrice: 0 },
+        ],
+      },
+      {
+        id: 'meat_group',
+        name: 'Món Thịt & Hải Sản (Chọn 2 món)',
+        requiredQty: 2,
+        options: [
+          { dishId: 6, dishName: 'Bò Lúc Lắc', image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=200&h=200&fit=crop', extraPrice: 0 },
+          { dishId: 7, dishName: 'Gà Nướng Mắm Gừng', image: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c4?w=200&h=200&fit=crop', extraPrice: 0 },
+        ],
+      },
+      {
+        id: 'dessert_group',
+        name: 'Đồ Uống & Tráng Miệng (Chọn 3 món)',
+        requiredQty: 3,
+        options: [
+          { dishId: 8, dishName: 'Cà Phê Sữa Đá', image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=200&h=200&fit=crop', extraPrice: 0 },
+          { dishId: 9, dishName: 'Nước Chanh Dây', image: 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=200&h=200&fit=crop', extraPrice: 0 },
+          { dishId: 12, dishName: 'Bánh Flan Cà Phê', image: 'https://images.unsplash.com/photo-1587536849024-cb7c2932a037?w=200&h=200&fit=crop', extraPrice: 15000 },
+        ],
+      },
+    ],
+  },
   {
     id: 1,
     name: 'Phở Bò Tái Chín',

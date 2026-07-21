@@ -292,97 +292,126 @@ export default function PaymentScreen() {
           </div>
 
           {/* Promo code Section */}
-          <div style={{
-            background: '#fff',
-            borderRadius: 16,
-            padding: '16px 18px',
-            border: '1.5px solid rgba(200,160,80,0.22)',
-            boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
-          }}>
-            <div style={{
-              fontSize: 11.5,
-              fontWeight: 800,
-              color: '#8a5c20',
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase',
-              marginBottom: 10,
-            }}>
-              Mã ưu đãi / Voucher giảm giá
-            </div>
+          {(() => {
+            const hasCombo = orders.some(i => i.isCombo)
 
-            <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
-              <input
-                type="text"
-                value={promoInput}
-                onChange={e => setPromoInput(e.target.value)}
-                placeholder="Nhập mã (Ví dụ: MADAME10)"
-                style={{
-                  flex: 1,
-                  padding: '10px 14px',
-                  border: '1.5px solid #e8d5a0',
-                  borderRadius: 10,
-                  fontSize: 13,
-                  fontFamily: "'Be Vietnam Pro', sans-serif",
-                  color: '#1e0f04',
-                  outline: 'none',
-                }}
-              />
-              <button
-                type="button"
-                onClick={handleApplyPromo}
-                style={{
-                  padding: '10px 18px',
-                  background: 'linear-gradient(135deg, #c9a227, #f0c040)',
-                  border: 'none',
-                  borderRadius: 10,
-                  fontSize: 13,
+            return (
+              <div style={{
+                background: '#fff',
+                borderRadius: 16,
+                padding: '16px 18px',
+                border: hasCombo ? '1.5px solid #fde68a' : '1.5px solid rgba(200,160,80,0.22)',
+                boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
+                opacity: hasCombo ? 0.75 : 1,
+                position: 'relative',
+              }}>
+                <div style={{
+                  fontSize: 11.5,
                   fontWeight: 800,
-                  color: '#1e0f04',
-                  cursor: 'pointer',
-                  minHeight: 44,
-                }}
-              >
-                Áp dụng
-              </button>
-            </div>
+                  color: '#8a5c20',
+                  letterSpacing: '0.14em',
+                  textTransform: 'uppercase',
+                  marginBottom: 8,
+                }}>
+                  Mã ưu đãi / Voucher giảm giá
+                </div>
 
-            {/* Quick voucher chips */}
-            <div style={{ display: 'flex', gap: 8 }}>
-              <button
-                type="button"
-                onClick={() => { setAppliedPromo('MADAME10'); setPromoInput('MADAME10') }}
-                style={{
-                  padding: '6px 12px',
-                  borderRadius: 8,
-                  border: appliedPromo === 'MADAME10' ? '1.5px solid #f0c040' : '1px dashed #e8d5a0',
-                  background: appliedPromo === 'MADAME10' ? '#fef3c7' : '#fffbf0',
-                  fontSize: 11.5,
-                  fontWeight: 700,
-                  color: '#b8860b',
-                  cursor: 'pointer',
-                }}
-              >
-                MADAME10 (-10%)
-              </button>
+                {hasCombo ? (
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    padding: '10px 12px',
+                    borderRadius: 10,
+                    background: '#fffbf0',
+                    border: '1px solid #f0c040',
+                    fontSize: 12,
+                    fontWeight: 600,
+                    color: '#8a5c20',
+                    lineHeight: 1.4,
+                  }}>
+                    <span>💡</span>
+                    <span>Combo đã áp dụng giá ưu đãi đặc biệt, không áp dụng đồng thời cùng Voucher.</span>
+                  </div>
+                ) : (
+                  <>
+                    <div style={{ display: 'flex', gap: 8, marginBottom: 10 }}>
+                      <input
+                        type="text"
+                        value={promoInput}
+                        onChange={e => setPromoInput(e.target.value)}
+                        placeholder="Nhập mã (Ví dụ: MADAME10)"
+                        style={{
+                          flex: 1,
+                          padding: '10px 14px',
+                          border: '1.5px solid #e8d5a0',
+                          borderRadius: 10,
+                          fontSize: 13,
+                          fontFamily: "'Be Vietnam Pro', sans-serif",
+                          color: '#1e0f04',
+                          outline: 'none',
+                        }}
+                      />
+                      <button
+                        type="button"
+                        onClick={handleApplyPromo}
+                        style={{
+                          padding: '10px 18px',
+                          background: 'linear-gradient(135deg, #c9a227, #f0c040)',
+                          border: 'none',
+                          borderRadius: 10,
+                          fontSize: 13,
+                          fontWeight: 800,
+                          color: '#1e0f04',
+                          cursor: 'pointer',
+                          minHeight: 44,
+                        }}
+                      >
+                        Áp dụng
+                      </button>
+                    </div>
 
-              <button
-                type="button"
-                onClick={() => { setAppliedPromo('BIRTHDAY'); setPromoInput('BIRTHDAY') }}
-                style={{
-                  padding: '6px 12px',
-                  borderRadius: 8,
-                  border: appliedPromo === 'BIRTHDAY' ? '1.5px solid #f0c040' : '1px dashed #e8d5a0',
-                  background: appliedPromo === 'BIRTHDAY' ? '#fef3c7' : '#fffbf0',
-                  fontSize: 11.5,
-                  fontWeight: 700,
-                  color: '#b8860b',
-                  cursor: 'pointer',
-                }}
-              >
-                BIRTHDAY (-50K)
-              </button>
-            </div>
-          </div>
+                    {/* Quick voucher chips */}
+                    <div style={{ display: 'flex', gap: 8 }}>
+                      <button
+                        type="button"
+                        onClick={() => { setAppliedPromo('MADAME10'); setPromoInput('MADAME10') }}
+                        style={{
+                          padding: '6px 12px',
+                          borderRadius: 8,
+                          border: appliedPromo === 'MADAME10' ? '1.5px solid #f0c040' : '1px dashed #e8d5a0',
+                          background: appliedPromo === 'MADAME10' ? '#fef3c7' : '#fffbf0',
+                          fontSize: 11.5,
+                          fontWeight: 700,
+                          color: '#b8860b',
+                          cursor: 'pointer',
+                        }}
+                      >
+                        MADAME10 (-10%)
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => { setAppliedPromo('BIRTHDAY'); setPromoInput('BIRTHDAY') }}
+                        style={{
+                          padding: '6px 12px',
+                          borderRadius: 8,
+                          border: appliedPromo === 'BIRTHDAY' ? '1.5px solid #f0c040' : '1px dashed #e8d5a0',
+                          background: appliedPromo === 'BIRTHDAY' ? '#fef3c7' : '#fffbf0',
+                          fontSize: 11.5,
+                          fontWeight: 700,
+                          color: '#b8860b',
+                          cursor: 'pointer',
+                        }}
+                      >
+                        BIRTHDAY (-50K)
+                      </button>
+                    </div>
+                  </>
+                )}
+              </div>
+            )
+          })()}
 
           {/* Detailed Itemized Bill */}
           <div style={{

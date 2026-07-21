@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../store'
-import { changeCartQty, deleteFromCart, addUpsell, clearCart } from '../../../store/slices/cartSlice'
+import { addToCart, changeCartQtyByIndex, deleteFromCartByIndex, addUpsell, clearCart } from '../../../store/slices/cartSlice'
 import { submitOrder } from '../../../store/slices/orderSlice'
 import { goTo } from '../../../store/slices/navigationSlice'
 import { UPSELL_DISHES, fmt } from '../../../data'
 import { microcopy } from '../../../locales/vi'
+import type { CartItem } from '../../../types'
 
 import CartRow from '../components/CartRow'
 import UpsellCard from '../components/UpsellCard'
+import ComboDetailSheet from '../../menu/components/ComboDetailSheet'
 
 interface CartScreenProps {
   isSidebar?: boolean
@@ -19,6 +21,7 @@ export default function CartScreen({ isSidebar = false }: CartScreenProps) {
   const tableId = useAppSelector(state => state.table.tableId)
 
   const [ordering, setOrdering] = useState(false)
+  const [editingComboItem, setEditingComboItem] = useState<CartItem | null>(null)
 
   const subtotal = cart.reduce((s, i) => s + i.dish.price * i.qty, 0)
   const vat = Math.round(subtotal * 0.08)
@@ -128,12 +131,13 @@ export default function CartScreen({ isSidebar = false }: CartScreenProps) {
             </div>
 
             {/* Cart items */}
-            {cart.map(item => (
+            {cart.map((item, index) => (
               <CartRow
-                key={item.dish.id}
+                key={item.isCombo ? item.comboSelection?.cartItemId || index : `${item.dish.id}-${index}`}
                 item={item}
-                onChange={qty => dispatch(changeCartQty({ id: item.dish.id, qty }))}
-                onDelete={() => dispatch(deleteFromCart(item.dish.id))}
+                onChange={qty => dispatch(changeCartQtyByIndex({ index, qty }))}
+                onDelete={() => dispatch(deleteFromCartByIndex(index))}
+                onEditCombo={item.isCombo ? () => setEditingComboItem(item) : undefined}
               />
             ))}
 
@@ -221,6 +225,19 @@ export default function CartScreen({ isSidebar = false }: CartScreenProps) {
             </button>
           </div>
         </div>
+      )}
+
+      {/* Combo Re-configuration Modal */}
+      {editingComboItem && editingComboItem.comboSelection && (
+        <ComboDetailSheet
+          dish={editingComboItem.comboSelection.comboDish}
+          existingCartItem={editingComboItem}
+          onClose={() => setEditingComboItem(null)}
+          onAdd={item => {
+            dispatch(addToCart(item))
+            setEditingComboItem(null)
+          }}
+        />
       )}
 
       <style>{`@keyframes spin { to { transform: rotate(360deg); } }`}</style>

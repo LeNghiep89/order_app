@@ -7,6 +7,7 @@ import type { Dish } from '../../../types'
 import { microcopy } from '../../../locales/vi'
 
 import ItemDetailSheet from '../components/ItemDetailSheet'
+import ComboDetailSheet from '../components/ComboDetailSheet'
 import CartScreen from '../../cart/screens/CartScreen'
 
 export default function MenuScreen() {
@@ -439,109 +440,143 @@ export default function MenuScreen() {
                   gridTemplateColumns: 'repeat(3, 1fr)',
                   gap: '12px',
                 }}>
-                  {dishes.map(dish => (
-                    <div
-                      key={dish.id}
-                      onClick={() => setDetail(dish)}
-                      style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        background: '#fff',
-                        borderRadius: 14,
-                        overflow: 'hidden',
-                        border: '1.5px solid rgba(200,160,80,0.18)',
-                        boxShadow: '0 3px 14px rgba(0,0,0,0.05)',
-                        cursor: 'pointer',
-                        transition: 'all 0.15s ease',
-                      }}
-                    >
-                      <div style={{ height: 125, background: '#4a2810', position: 'relative', overflow: 'hidden' }}>
-                        <img src={dish.image} alt={dish.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                        {dish.originalPrice && (
-                          <div style={{
-                            position: 'absolute', top: 6, left: 6,
-                            background: '#d63031', color: '#fff', fontSize: 9.5, fontWeight: 800,
-                            padding: '2px 6px', borderRadius: 4,
-                          }}>
-                            Giảm giá
-                          </div>
-                        )}
-                      </div>
+                  {dishes.map(dish => {
+                    const isSoldOut = dish.isSoldOut
 
-                      <div style={{ padding: '12px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-                        <div>
-                          <div style={{
-                            fontFamily: "'Playfair Display', serif",
-                            fontWeight: 700,
-                            fontSize: 14.5,
-                            color: '#1e0f04',
-                            marginBottom: 4,
-                            lineHeight: 1.25,
-                          }}>
-                            {dish.name}
-                          </div>
-                          <div style={{
-                            fontSize: 11.5,
-                            color: '#7a5030',
-                            lineHeight: 1.4,
-                            display: '-webkit-box',
-                            WebkitLineClamp: 2,
-                            WebkitBoxOrient: 'vertical',
-                            overflow: 'hidden',
-                            marginBottom: 10,
-                          }}>
-                            {dish.desc}
-                          </div>
+                    return (
+                      <div
+                        key={dish.id}
+                        onClick={() => {
+                          if (!isSoldOut) setDetail(dish)
+                        }}
+                        style={{
+                          display: 'flex',
+                          flexDirection: 'column',
+                          background: '#fff',
+                          borderRadius: 14,
+                          overflow: 'hidden',
+                          border: dish.isCombo ? '1.5px solid #f0c040' : '1.5px solid rgba(200,160,80,0.18)',
+                          boxShadow: dish.isCombo ? '0 4px 18px rgba(240,192,64,0.25)' : '0 3px 14px rgba(0,0,0,0.05)',
+                          cursor: isSoldOut ? 'not-allowed' : 'pointer',
+                          transition: 'all 0.15s ease',
+                          opacity: isSoldOut ? 0.6 : 1,
+                        }}
+                      >
+                        <div style={{ height: 125, background: '#4a2810', position: 'relative', overflow: 'hidden' }}>
+                          <img src={dish.image} alt={dish.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+
+                          {/* Combo Badge or Regular Discount Badge */}
+                          {dish.isCombo ? (
+                            <div style={{
+                              position: 'absolute', top: 6, left: 6,
+                              background: 'linear-gradient(135deg, #b91c1c, #dc2626)',
+                              color: '#fff', fontSize: 9.5, fontWeight: 800,
+                              padding: '3px 8px', borderRadius: 6,
+                              letterSpacing: '0.06em',
+                              boxShadow: '0 2px 8px rgba(185,28,28,0.4)',
+                              border: '1px solid rgba(240,192,64,0.6)',
+                            }}>
+                              COMBO ƯU ĐÃI
+                            </div>
+                          ) : dish.originalPrice && (
+                            <div style={{
+                              position: 'absolute', top: 6, left: 6,
+                              background: '#d63031', color: '#fff', fontSize: 9.5, fontWeight: 800,
+                              padding: '2px 6px', borderRadius: 4,
+                            }}>
+                              Giảm giá
+                            </div>
+                          )}
+
+                          {isSoldOut && (
+                            <div style={{
+                              position: 'absolute', inset: 0,
+                              background: 'rgba(0,0,0,0.55)',
+                              display: 'flex', alignItems: 'center', justifyContent: 'center',
+                            }}>
+                              <span style={{ background: '#dc2626', color: '#fff', fontSize: 11, fontWeight: 800, padding: '4px 10px', borderRadius: 6 }}>
+                                TẠM HẾT MÓN
+                              </span>
+                            </div>
+                          )}
                         </div>
 
-                        <div style={{
-                          display: 'flex',
-                          alignItems: 'center',
-                          justifyContent: 'space-between',
-                          paddingTop: 8,
-                          borderTop: '1px dashed rgba(200,160,80,0.2)',
-                        }}>
+                        <div style={{ padding: '12px', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
                           <div>
-                            {dish.originalPrice && (
-                              <div style={{ fontSize: 10.5, color: '#a08060', textDecoration: 'line-through', lineHeight: 1 }}>
-                                {fmt(dish.originalPrice)}
-                              </div>
-                            )}
-                            <div style={{ fontSize: 14.5, fontWeight: 800, color: '#b82c0a' }}>
-                              {fmt(dish.price)}
+                            <div style={{
+                              fontFamily: "'Playfair Display', serif",
+                              fontWeight: 700,
+                              fontSize: 14.5,
+                              color: '#1e0f04',
+                              marginBottom: 4,
+                              lineHeight: 1.25,
+                            }}>
+                              {dish.name}
+                            </div>
+                            <div style={{
+                              fontSize: 11.5,
+                              color: '#7a5030',
+                              lineHeight: 1.4,
+                              display: '-webkit-box',
+                              WebkitLineClamp: 2,
+                              WebkitBoxOrient: 'vertical',
+                              overflow: 'hidden',
+                              marginBottom: 10,
+                            }}>
+                              {dish.desc}
                             </div>
                           </div>
 
-                          <button
-                            onClick={(e) => {
-                              e.stopPropagation()
-                              setDetail(dish)
-                            }}
-                            style={{
-                              height: 44,
-                              padding: '0 14px',
-                              borderRadius: 22,
-                              background: 'linear-gradient(135deg, #c9a227 0%, #f0c040 100%)',
-                              border: 'none',
-                              color: '#1e0f04',
-                              fontSize: 12.5,
-                              fontWeight: 700,
-                              fontFamily: "'Be Vietnam Pro', sans-serif",
-                              cursor: 'pointer',
-                              display: 'flex',
-                              alignItems: 'center',
-                              gap: 4,
-                              boxShadow: '0 3px 10px rgba(240,192,64,0.35)',
-                              flexShrink: 0,
-                            }}
-                          >
-                            <span>+</span>
-                            <span>Thêm</span>
-                          </button>
+                          <div style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between',
+                            paddingTop: 8,
+                            borderTop: '1px dashed rgba(200,160,80,0.2)',
+                          }}>
+                            <div>
+                              {dish.originalPrice && (
+                                <div style={{ fontSize: 10.5, color: '#a08060', textDecoration: 'line-through', lineHeight: 1 }}>
+                                  {fmt(dish.originalPrice)}
+                                </div>
+                              )}
+                              <div style={{ fontSize: 14.5, fontWeight: 800, color: '#b82c0a' }}>
+                                {fmt(dish.price)}
+                              </div>
+                            </div>
+
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                if (!isSoldOut) setDetail(dish)
+                              }}
+                              disabled={isSoldOut}
+                              style={{
+                                height: 44,
+                                padding: '0 14px',
+                                borderRadius: 22,
+                                background: isSoldOut ? '#d1d5db' : 'linear-gradient(135deg, #c9a227 0%, #f0c040 100%)',
+                                border: 'none',
+                                color: isSoldOut ? '#6b7280' : '#1e0f04',
+                                fontSize: 12.5,
+                                fontWeight: 700,
+                                fontFamily: "'Be Vietnam Pro', sans-serif",
+                                cursor: isSoldOut ? 'not-allowed' : 'pointer',
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: 4,
+                                boxShadow: isSoldOut ? 'none' : '0 3px 10px rgba(240,192,64,0.35)',
+                                flexShrink: 0,
+                              }}
+                            >
+                              <span>+</span>
+                              <span>{dish.isCombo ? 'Tùy chọn' : 'Thêm'}</span>
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    )
+                  })}
                 </div>
               </div>
             ))}
@@ -563,16 +598,27 @@ export default function MenuScreen() {
           <CartScreen isSidebar />
         </div>
 
-        {/* Item detail modal */}
+        {/* Item detail / Combo detail modal */}
         {detail && (
-          <ItemDetailSheet
-            dish={detail}
-            onClose={() => setDetail(null)}
-            onAdd={item => {
-              dispatch(addToCart(item))
-              setDetail(null)
-            }}
-          />
+          detail.isCombo ? (
+            <ComboDetailSheet
+              dish={detail}
+              onClose={() => setDetail(null)}
+              onAdd={item => {
+                dispatch(addToCart(item))
+                setDetail(null)
+              }}
+            />
+          ) : (
+            <ItemDetailSheet
+              dish={detail}
+              onClose={() => setDetail(null)}
+              onAdd={item => {
+                dispatch(addToCart(item))
+                setDetail(null)
+              }}
+            />
+          )
         )}
       </div>
     )
