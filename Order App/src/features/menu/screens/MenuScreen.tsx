@@ -436,8 +436,8 @@ export default function MenuScreen() {
 
                 <div style={{
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(210px, 1fr))',
-                  gap: '14px',
+                  gridTemplateColumns: 'repeat(3, 1fr)',
+                  gap: '12px',
                 }}>
                   {dishes.map(dish => (
                     <div

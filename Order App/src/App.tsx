@@ -27,41 +27,89 @@ function SlideView({ screen, children }: { screen: Screen; children: React.React
 
 // ─── Demo nav bar (prototype only) ───────────────────────────────────────────
 
-const FLOW: Screen[] = ['tablet-checkin', 'menu', 'cart', 'order', 'payment']
+const FLOW: Screen[] = ['tablet-checkin', 'menu', 'order', 'payment', 'nps']
 const LABELS: Partial<Record<Screen, string>> = {
-  'tablet-checkin': '⊞ Tablet Check-in',
+  'tablet-checkin': '⊞ Check-in',
   menu: 'Thực đơn',
-  cart: 'Giỏ hàng',
-  order: 'Đã gọi',
+  order: 'Bếp & Món đã gọi',
   payment: 'Thanh toán',
+  nps: 'Đánh giá NPS',
 }
 
-function PrototypeNav({ current, onGo }: { current: Screen; onGo: (s: Screen) => void }) {
+function TopHeaderNav({ current, onGo }: { current: Screen; onGo: (s: Screen) => void }) {
+  const cart = useAppSelector(state => state.cart.cart)
+  const cartCount = cart.reduce((s, i) => s + i.qty, 0)
+
   return (
     <div style={{
-      position: 'fixed', bottom: 0, left: 0, right: 0, zIndex: 9999,
-      display: 'flex', justifyContent: 'center', pointerEvents: 'none',
+      position: 'fixed', top: 0, left: 0, right: 0, zIndex: 9999,
+      height: 48,
+      background: 'linear-gradient(135deg, #1c0c03 0%, #2a1406 100%)',
+      borderBottom: '1.5px solid rgba(240,192,64,0.3)',
+      boxShadow: '0 4px 20px rgba(0,0,0,0.4)',
+      display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+      padding: '0 16px',
     }}>
+      {/* Brand Logo & Title */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, cursor: 'pointer' }} onClick={() => onGo('tablet-checkin')}>
+        <img src="/logo.png" alt="Madame Lân Logo" style={{ width: 32, height: 32, borderRadius: 8, objectFit: 'cover', boxShadow: '0 2px 8px rgba(0,0,0,0.3)' }} />
+        <div>
+          <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: 15, color: '#f0c040', lineHeight: 1.1 }}>
+            Madame Lân
+          </div>
+          <div style={{ fontSize: 9.5, color: 'rgba(240,192,64,0.6)', letterSpacing: '0.12em', textTransform: 'uppercase' }}>
+            Tablet Order System
+          </div>
+        </div>
+      </div>
+
+      {/* Tabs */}
+      <div style={{ display: 'flex', gap: 6 }}>
+        {FLOW.map(s => {
+          const active = current === s
+          return (
+            <button
+              key={s}
+              onClick={() => onGo(s)}
+              style={{
+                padding: '6px 14px',
+                borderRadius: 10,
+                background: active
+                  ? 'linear-gradient(135deg, #c9a227, #f0c040)'
+                  : 'rgba(240,192,64,0.1)',
+                border: active ? '1px solid #f0c040' : '1px solid rgba(240,192,64,0.18)',
+                cursor: 'pointer',
+                fontSize: 12,
+                fontWeight: active ? 800 : 600,
+                color: active ? '#1e0f04' : '#f0c040',
+                fontFamily: "'Be Vietnam Pro', sans-serif",
+                transition: 'all 0.15s',
+                display: 'flex',
+                alignItems: 'center',
+                gap: 6,
+              }}
+            >
+              <span>{LABELS[s]}</span>
+              {s === 'cart' && cartCount > 0 && (
+                <span style={{
+                  background: '#b82c0a', color: '#fff', fontSize: 10, fontWeight: 800,
+                  borderRadius: 10, padding: '1px 6px', lineHeight: 1,
+                }}>
+                  {cartCount}
+                </span>
+              )}
+            </button>
+          )
+        })}
+      </div>
+
+      {/* Table Badge */}
       <div style={{
-        display: 'flex', gap: 4, padding: '6px 10px',
-        background: 'rgba(30,15,4,0.88)', borderRadius: '20px 20px 0 0',
-        backdropFilter: 'blur(12px)',
-        boxShadow: '0 -2px 20px rgba(0,0,0,0.35)',
-        pointerEvents: 'all',
+        display: 'flex', alignItems: 'center', gap: 6,
+        background: 'rgba(240,192,64,0.15)', border: '1px solid rgba(240,192,64,0.35)',
+        borderRadius: 16, padding: '4px 12px',
       }}>
-        {FLOW.map(s => (
-          <button key={s} onClick={() => onGo(s)} style={{
-            padding: '5px 12px', borderRadius: 14,
-            background: current === s ? 'linear-gradient(135deg, #c9a227, #f0c040)' : 'rgba(240,192,64,0.1)',
-            border: 'none', cursor: 'pointer',
-            fontSize: 11.5, fontWeight: current === s ? 700 : 500,
-            color: current === s ? '#1e0f04' : 'rgba(240,192,64,0.65)',
-            fontFamily: "'Be Vietnam Pro', sans-serif",
-            transition: 'all 0.15s',
-          }}>
-            {LABELS[s]}
-          </button>
-        ))}
+        <span style={{ fontSize: 12, color: '#f0c040', fontWeight: 800 }}>Bàn A1</span>
       </div>
     </div>
   )
@@ -91,6 +139,7 @@ export default function App() {
       minHeight: '100vh',
       overflow: 'hidden',
       background: '#1e0f04',
+      paddingTop: 48, // Padding for fixed top header bar
     }}>
       <style>{`
         @keyframes slideIn {
@@ -102,8 +151,11 @@ export default function App() {
         .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
       `}</style>
 
+      {/* Fixed Top Header Bar */}
+      <TopHeaderNav current={screen} onGo={handleGoTo} />
+
       {/* Screen layer */}
-      <div style={{ position: 'relative', minHeight: '100vh', paddingBottom: !isTablet ? 50 : 0 }}>
+      <div style={{ position: 'relative', minHeight: 'calc(100vh - 48px)' }}>
 
         {screen === 'tablet-checkin' && (
           <TabletCheckinScreen />
@@ -148,9 +200,6 @@ export default function App() {
           <LoadingScreen />
         )}
       </div>
-
-      {/* Prototype nav (always on top) */}
-      <PrototypeNav current={screen} onGo={handleGoTo} />
     </div>
   )
 }

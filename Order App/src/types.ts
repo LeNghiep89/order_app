@@ -21,4 +21,5 @@ export type OrderStatus = 'sent' | 'preparing' | 'served'
 
 export interface OrderItem extends CartItem {
   status: OrderStatus
+  round?: number
 }

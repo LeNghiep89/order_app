@@ -64,8 +64,15 @@ export const microcopy = {
     statusSent: 'Bếp đã nhận đơn',
     statusPreparing: 'Bếp đang chế biến',
     statusServed: 'Món ăn đã sẵn sàng',
+    batchRound: (roundNumber: number) => `Lần gọi thứ ${roundNumber}`,
     addMoreCta: '+ Gọi thêm món',
     serviceCheckoutCta: 'Yêu cầu hỗ trợ & Thanh toán',
+  },
+  nps: {
+    title: 'Đánh giá trải nghiệm dùng bữa',
+    subtitle: 'Ý kiến chân thành của bạn giúp Madame Lân nâng tầm phục vụ mỗi ngày',
+    recoveryToast: 'Madame Lân đã nhận được phản hồi. Quản lý nhà hàng sẽ đến hỗ trợ gia đình mình ngay lập tức!',
+    managerAlert: '🚨 ỨNG CỨU TỨC THÌ: Bàn A1 phát phản hồi chưa hài lòng. Quản lý cần hỗ trợ ngay!',
   },
   serviceCheckout: {
     header: 'Yêu cầu Dịch vụ & Thanh toán',

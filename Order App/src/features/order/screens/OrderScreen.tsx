@@ -244,7 +244,7 @@ export default function OrderScreen() {
         {/* TABLET LANDSCAPE 3-COLUMN STATUS GROUPS */}
         {isTablet ? (
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16, marginBottom: 20 }}>
-            {/* Column 1: Chờ cung cấp */}
+            {/* Column 1: Bếp đã nhận đơn */}
             <div style={{
               background: '#fff',
               borderRadius: 16,
@@ -265,7 +265,7 @@ export default function OrderScreen() {
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#6b7280' }} />
                   <span style={{ fontSize: 13, fontWeight: 800, color: '#374151', letterSpacing: '0.05em' }}>
-                    1. Chờ xác nhận ({sentItems.length})
+                    1. Bếp đã nhận đơn ({sentItems.length})
                   </span>
                 </div>
               </div>
@@ -281,7 +281,7 @@ export default function OrderScreen() {
               )}
             </div>
 
-            {/* Column 2: Đang chế biến */}
+            {/* Column 2: Bếp đang chế biến */}
             <div style={{
               background: '#fff',
               borderRadius: 16,
@@ -302,7 +302,7 @@ export default function OrderScreen() {
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#d97706' }} />
                   <span style={{ fontSize: 13, fontWeight: 800, color: '#b45309', letterSpacing: '0.05em' }}>
-                    2. Đang chế biến ({prepItems.length})
+                    2. Bếp đang chế biến ({prepItems.length})
                   </span>
                 </div>
               </div>
@@ -318,7 +318,7 @@ export default function OrderScreen() {
               )}
             </div>
 
-            {/* Column 3: Đã phục vụ */}
+            {/* Column 3: Món ăn đã sẵn sàng */}
             <div style={{
               background: '#fff',
               borderRadius: 16,
@@ -339,7 +339,7 @@ export default function OrderScreen() {
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
                   <span style={{ width: 10, height: 10, borderRadius: '50%', background: '#16a34a' }} />
                   <span style={{ fontSize: 13, fontWeight: 800, color: '#15803d', letterSpacing: '0.05em' }}>
-                    3. Đã phục vụ ({servedItems.length})
+                    3. Món ăn đã sẵn sàng ({servedItems.length})
                   </span>
                 </div>
               </div>
@@ -500,15 +500,16 @@ function OrderItemCard({ item }: { item: any }) {
             <StatusBadge status={item.status} />
           </div>
 
-          {item.selectedModifiers && item.selectedModifiers.length > 0 && (
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 4, marginBottom: 6 }}>
-              {item.selectedModifiers.map((m: string) => (
-                <span key={m} style={{ fontSize: 10, color: '#8a5c20', background: '#fff8e8', border: '1px solid #e8d5a0', borderRadius: 6, padding: '1px 5px' }}>
-                  {m}
-                </span>
-              ))}
-            </div>
-          )}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 6, flexWrap: 'wrap', marginBottom: 6 }}>
+            <span style={{ fontSize: 10, fontWeight: 700, color: '#b8860b', background: '#fff8e8', border: '1px solid #e8d5a0', borderRadius: 6, padding: '1px 6px' }}>
+              Lần gọi {item.round || 1}
+            </span>
+            {item.selectedModifiers && item.selectedModifiers.map((m: string) => (
+              <span key={m} style={{ fontSize: 10, color: '#8a5c20', background: '#fff8e8', border: '1px solid #e8d5a0', borderRadius: 6, padding: '1px 5px' }}>
+                {m}
+              </span>
+            ))}
+          </div>
 
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginTop: 4 }}>
             <span style={{ fontSize: 12, fontWeight: 700, color: '#374151', background: '#f3f4f6', padding: '2px 8px', borderRadius: 6 }}>

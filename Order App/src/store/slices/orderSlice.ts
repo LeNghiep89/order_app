@@ -5,18 +5,20 @@ import { ALL_DISHES } from '../../data'
 interface OrderState {
   orders: OrderItem[]
   submittedAt: string // ISO date string
+  currentRound: number
 }
 
 const DEMO_ORDERS: OrderItem[] = [
-  { dish: ALL_DISHES[2], qty: 2, selectedModifiers: ['Không cay', 'Nước sốt thêm'], status: 'served' },
-  { dish: ALL_DISHES[3], qty: 1, selectedModifiers: ['Ít cay'], status: 'preparing' },
-  { dish: ALL_DISHES[7], qty: 1, selectedModifiers: ['Ít đá'], status: 'sent' },
-  { dish: ALL_DISHES[5], qty: 1, selectedModifiers: ['Không cay'], status: 'preparing' },
+  { dish: ALL_DISHES[2], qty: 2, selectedModifiers: ['Không cay', 'Nước sốt thêm'], status: 'served', round: 1 },
+  { dish: ALL_DISHES[3], qty: 1, selectedModifiers: ['Ít cay'], status: 'preparing', round: 1 },
+  { dish: ALL_DISHES[7], qty: 1, selectedModifiers: ['Ít đá'], status: 'sent', round: 2 },
+  { dish: ALL_DISHES[5], qty: 1, selectedModifiers: ['Không cay'], status: 'preparing', round: 2 },
 ]
 
 const initialState: OrderState = {
   orders: DEMO_ORDERS,
   submittedAt: new Date('2025-09-08T17:09:00').toISOString(),
+  currentRound: 3,
 }
 
 const orderSlice = createSlice({
@@ -24,10 +26,13 @@ const orderSlice = createSlice({
   initialState,
   reducers: {
     submitOrder(state, action: PayloadAction<CartItem[]>) {
-      state.orders = action.payload.map(item => ({
+      const newItems: OrderItem[] = action.payload.map(item => ({
         ...item,
         status: 'sent' as const,
+        round: state.currentRound,
       }))
+      state.orders = [...state.orders, ...newItems]
+      state.currentRound += 1
       state.submittedAt = new Date().toISOString()
     },
     updateOrderStatus(state, action: PayloadAction<{ id: number; status: OrderStatus }>) {
@@ -39,6 +44,7 @@ const orderSlice = createSlice({
     },
     clearOrders(state) {
       state.orders = []
+      state.currentRound = 1
     },
   },
 })

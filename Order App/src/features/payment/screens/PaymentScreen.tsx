@@ -170,9 +170,9 @@ export default function PaymentScreen() {
         width: '100%',
       }}>
         {/* ═════════════════════════════════════════════════════════════════════
-            LEFT COLUMN: Bill Breakdown & Quick Service Requests (Width ~52%)
+            LEFT COLUMN: Bill Breakdown & Quick Service Requests (Width 50%)
         ═════════════════════════════════════════════════════════════════════ */}
-        <div style={{ flex: isTablet ? 1.1 : 1, display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <div style={{ flex: isTablet ? '1 1 50%' : '1', display: 'flex', flexDirection: 'column', gap: 14 }}>
 
           {/* Quick Service Requests Box */}
           <div style={{
@@ -466,15 +466,15 @@ export default function PaymentScreen() {
         </div>
 
         {/* ═════════════════════════════════════════════════════════════════════
-            RIGHT COLUMN: Dynamic QR Code & Payment Confirmation (~48%)
+            RIGHT COLUMN: Dynamic QR Code & Payment Confirmation (Width 50%)
         ═════════════════════════════════════════════════════════════════════ */}
-        <div style={{ flex: isTablet ? 0.9 : 1, display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <div style={{ flex: isTablet ? '1 1 50%' : '1', display: 'flex', flexDirection: 'column', gap: 14 }}>
 
           {/* Payment Method Selector */}
           <div style={{
             background: '#fff',
             borderRadius: 16,
-            padding: '16px 18px',
+            padding: '14px 16px',
             border: '1.5px solid rgba(200,160,80,0.22)',
             boxShadow: '0 4px 16px rgba(0,0,0,0.04)',
           }}>
@@ -484,12 +484,12 @@ export default function PaymentScreen() {
               color: '#8a5c20',
               letterSpacing: '0.14em',
               textTransform: 'uppercase',
-              marginBottom: 12,
+              marginBottom: 10,
             }}>
               Phương thức thanh toán
             </div>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
               {[
                 { id: 'qr', icon: '📱', label: 'Quét mã VietQR / MoMo / VNPay', sub: 'Tự động nhập đúng tiền & cú pháp' },
                 { id: 'card', icon: '💳', label: 'Thẻ ngân hàng (Máy quẹt thẻ POS)', sub: 'Visa, Mastercard, JCB, Napas' },
@@ -503,24 +503,24 @@ export default function PaymentScreen() {
                     style={{
                       display: 'flex',
                       alignItems: 'center',
-                      gap: 12,
-                      padding: '12px 14px',
+                      gap: 10,
+                      padding: '10px 12px',
                       borderRadius: 12,
                       border: active ? '2px solid #f0c040' : '1px solid #e8d5a0',
                       background: active ? 'linear-gradient(135deg, #fffbf0, #fffaeb)' : '#fff',
                       cursor: 'pointer',
                       boxShadow: active ? '0 3px 12px rgba(240,192,64,0.2)' : 'none',
-                      minHeight: 48,
+                      minHeight: 44,
                     }}
                   >
-                    <span style={{ fontSize: 24 }}>{m.icon}</span>
+                    <span style={{ fontSize: 20 }}>{m.icon}</span>
                     <div style={{ flex: 1 }}>
-                      <div style={{ fontSize: 13, fontWeight: active ? 800 : 600, color: '#1e0f04' }}>{m.label}</div>
-                      <div style={{ fontSize: 11, color: '#8a6040' }}>{m.sub}</div>
+                      <div style={{ fontSize: 12.5, fontWeight: active ? 800 : 600, color: '#1e0f04' }}>{m.label}</div>
+                      <div style={{ fontSize: 10.5, color: '#8a6040' }}>{m.sub}</div>
                     </div>
                     {active && (
                       <div style={{
-                        width: 20, height: 20, borderRadius: '50%',
+                        width: 18, height: 18, borderRadius: '50%',
                         background: 'linear-gradient(135deg, #c9a227, #f0c040)',
                         display: 'flex', alignItems: 'center', justifyContent: 'center',
                       }}>
@@ -539,7 +539,7 @@ export default function PaymentScreen() {
           <div style={{
             background: 'linear-gradient(180deg, #1c0c03 0%, #2a1406 100%)',
             borderRadius: 18,
-            padding: 20,
+            padding: 16,
             border: '1.5px solid rgba(240,192,64,0.3)',
             boxShadow: '0 8px 30px rgba(0,0,0,0.3)',
             display: 'flex',
@@ -552,40 +552,40 @@ export default function PaymentScreen() {
           }}>
             <div style={{ width: '100%' }}>
               <div style={{
-                fontSize: 10.5,
+                fontSize: 10,
                 fontWeight: 800,
                 letterSpacing: '0.18em',
                 color: 'rgba(240,192,64,0.7)',
                 textTransform: 'uppercase',
-                marginBottom: 4,
+                marginBottom: 2,
               }}>
-                MÃ QR THANH TOÁN ĐỘNG
+                MÃ QR THANH TOÁN ĐỘNG (-30% SIZE)
               </div>
-              <div style={{ fontSize: 20, fontWeight: 800, color: '#f0c040', fontFamily: "'Playfair Display', serif" }}>
+              <div style={{ fontSize: 18, fontWeight: 800, color: '#f0c040', fontFamily: "'Playfair Display', serif" }}>
                 {fmt(total)}
               </div>
             </div>
 
-            {/* QR Code Container */}
+            {/* QR Code Container - Reduced by 30% */}
             <div style={{
-              margin: '16px 0',
-              padding: 14,
+              margin: '10px 0',
+              padding: 10,
               background: '#fff',
-              borderRadius: 16,
+              borderRadius: 14,
               boxShadow: '0 8px 24px rgba(0,0,0,0.4), 0 0 0 2px rgba(240,192,64,0.4)',
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
             }}>
-              <QRGraphic tint="#1e0f04" cellSize={7} />
+              <QRGraphic tint="#1e0f04" cellSize={5} />
               <div style={{
-                marginTop: 10,
-                fontSize: 11,
+                marginTop: 6,
+                fontSize: 10.5,
                 fontWeight: 700,
                 color: '#1e0f04',
                 background: '#fff3d5',
-                padding: '4px 10px',
-                borderRadius: 8,
+                padding: '3px 8px',
+                borderRadius: 6,
                 border: '1px solid #e8d5a0',
               }}>
                 Nội dung: MADAMELAN BANA1

@@ -4,6 +4,7 @@ import { clearCart } from '../../../store/slices/cartSlice'
 import { clearOrders } from '../../../store/slices/orderSlice'
 import { checkin } from '../../../store/slices/tableSlice'
 import { goTo, setViewportMode } from '../../../store/slices/navigationSlice'
+import { microcopy } from '../../../locales/vi'
 
 export default function NPSScreen() {
   const dispatch = useAppDispatch()
@@ -66,6 +67,7 @@ export default function NPSScreen() {
           reasons.length > 0 ? reasons.join(', ') : 'Không nêu lý do cụ thể'
         }.${payload.other_comment ? ` Ý kiến khác: ${payload.other_comment}` : ''}`
       )
+      showToast(microcopy.nps.managerAlert)
     }
 
     if (simOffline) {
@@ -109,8 +111,6 @@ export default function NPSScreen() {
     }
   }
 
-  const gold = '#f0c040'
-
   return (
     <div style={{
       minHeight: '100vh',
@@ -126,27 +126,31 @@ export default function NPSScreen() {
       {/* Toast Notification */}
       {toastMessage && (
         <div style={{
-          position: 'fixed', top: 20, zIndex: 9999,
-          background: 'rgba(240,192,64,0.95)', color: '#1e0f04',
-          padding: '12px 20px', borderRadius: 10, fontSize: 13, fontWeight: 700,
-          boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+          position: 'fixed', top: 65, zIndex: 9999,
+          background: 'rgba(239,68,68,0.95)', color: '#fff',
+          padding: '12px 20px', borderRadius: 12, fontSize: 13, fontWeight: 700,
+          boxShadow: '0 8px 32px rgba(239,68,68,0.3)',
           animation: 'slideIn 0.3s ease-out',
         }}>
-          ⚠️ {toastMessage}
+          {toastMessage}
         </div>
       )}
 
       {/* Header */}
-      <div style={{ width: '100%', maxWidth: 430, textAlign: 'center', marginTop: 32, marginBottom: 28 }}>
-        <div style={{
-          width: 50, height: 50, borderRadius: '50%',
-          background: 'linear-gradient(135deg, #b8860b 0%, #f0c040 50%, #c9a227 100%)',
-          display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-          boxShadow: '0 4px 18px rgba(240,192,64,0.35)', marginBottom: 8,
-        }}>
-          <span style={{ fontSize: 24 }}>🌸</span>
-        </div>
-        <div style={{ fontFamily: "'Playfair Display', serif", fontStyle: 'italic', fontWeight: 700, fontSize: 24, color: '#f0c040', letterSpacing: '0.02em' }}>
+      <div style={{ width: '100%', maxWidth: 430, textAlign: 'center', marginTop: 16, marginBottom: 20 }}>
+        <img
+          src="/logo.png"
+          alt="Madame Lân Logo"
+          style={{
+            width: 52,
+            height: 52,
+            borderRadius: 12,
+            objectFit: 'cover',
+            boxShadow: '0 4px 18px rgba(168,36,36,0.4)',
+            marginBottom: 8,
+          }}
+        />
+        <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: 24, color: '#f0c040', letterSpacing: '0.02em' }}>
           Madame Lân
         </div>
         <div style={{ fontSize: 11, color: 'rgba(240,192,64,0.5)', letterSpacing: '0.12em', textTransform: 'uppercase', marginTop: 2 }}>
@@ -170,7 +174,7 @@ export default function NPSScreen() {
           textAlign: 'center', fontSize: 15, fontWeight: 600, color: '#fdf3e3',
           lineHeight: 1.55, marginBottom: 24, padding: '0 10px',
         }}>
-          Bạn có sẵn lòng giới thiệu bạn bè đến dùng bữa ở Madam Lân không ?
+          Bạn có sẵn lòng giới thiệu bạn bè đến dùng bữa ở Madame Lân không?
         </div>
 
         {/* NPS Scale 1 - 9 */}
@@ -339,42 +343,45 @@ export default function NPSScreen() {
           padding: 20,
         }}>
           <div style={{
-            width: '100%', maxWidth: 360,
+            width: '100%', maxWidth: 380,
             background: '#fff', color: '#1e0f04',
-            borderRadius: 16, padding: '28px 24px 24px',
+            borderRadius: 18, padding: '28px 24px 24px',
             boxShadow: '0 24px 64px rgba(0,0,0,0.5)',
             textAlign: 'center',
             animation: 'tabletSlideDown 0.35s cubic-bezier(0.32,0.72,0,1) both',
+            border: score <= 6 ? '2px solid #ef4444' : '2px solid #22c55e',
           }}>
             <div style={{
-              width: 52, height: 52, borderRadius: '50%',
-              background: '#f0fdf4', border: '2px solid #22c55e',
+              width: 54, height: 54, borderRadius: '50%',
+              background: score <= 6 ? '#fef2f2' : '#f0fdf4',
+              border: `2px solid ${score <= 6 ? '#ef4444' : '#22c55e'}`,
               display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
               marginBottom: 16,
+              fontSize: 24,
             }}>
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#22c55e" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="20 6 9 17 4 12"/>
-              </svg>
+              {score <= 6 ? '🛎️' : '❤️'}
             </div>
-            <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: 20, color: '#1e0f04', marginBottom: 8 }}>
-              Thông báo
+            <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: 19, color: '#1e0f04', marginBottom: 10 }}>
+              {score <= 6 ? 'Madame Lân đã ghi nhận' : 'Cảm ơn ý kiến của bạn!'}
             </div>
-            <div style={{ fontSize: 13.5, color: '#6b4020', lineHeight: 1.6, marginBottom: 24, padding: '0 8px' }}>
-              Cảm ơn quý khách đã góp ý cho nhà hàng.
+            <div style={{ fontSize: 13.5, color: '#6b4020', lineHeight: 1.6, marginBottom: 24, padding: '0 4px' }}>
+              {score <= 6
+                ? microcopy.nps.recoveryToast
+                : 'Cảm ơn quý khách đã dành thời gian góp ý. Chúc quý khách có trải nghiệm tuyệt vời tại Madame Lân!'}
             </div>
             <button
               onClick={handleCloseSession}
               style={{
-                width: '100%', padding: '12px',
+                width: '100%', padding: '13px',
                 background: 'linear-gradient(135deg, #1e0f04 0%, #3d2010 100%)',
-                border: 'none', borderRadius: 10,
-                color: '#f0c040', fontSize: 13.5, fontWeight: 700,
+                border: 'none', borderRadius: 12,
+                color: '#f0c040', fontSize: 14, fontWeight: 700,
                 cursor: 'pointer', letterSpacing: '0.04em',
                 fontFamily: "'Be Vietnam Pro', sans-serif",
                 boxShadow: '0 4px 16px rgba(30,15,4,0.25)',
               }}
             >
-              Đóng
+              Hoàn tất & Quay về Trang chủ
             </button>
           </div>
         </div>
