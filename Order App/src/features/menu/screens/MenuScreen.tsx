@@ -73,19 +73,18 @@ export default function MenuScreen() {
             alignItems: 'center',
             textAlign: 'center',
           }}>
-            <div style={{
-              width: 44,
-              height: 44,
-              borderRadius: '50%',
-              background: 'linear-gradient(135deg, #c9a227, #f0c040)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              boxShadow: '0 3px 12px rgba(240,192,64,0.4)',
-              marginBottom: 8,
-            }}>
-              <span style={{ fontSize: 20 }}>🌸</span>
-            </div>
+            <img
+              src="/logo.png"
+              alt="Madame Lân Logo"
+              style={{
+                width: 48,
+                height: 48,
+                borderRadius: 10,
+                objectFit: 'cover',
+                boxShadow: '0 3px 12px rgba(0,0,0,0.3)',
+                marginBottom: 8,
+              }}
+            />
             <div style={{
               fontFamily: "'Playfair Display', serif",
               fontStyle: 'italic',

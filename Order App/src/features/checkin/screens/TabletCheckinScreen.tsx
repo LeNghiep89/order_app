@@ -281,19 +281,18 @@ export default function TabletCheckinScreen() {
             paddingBottom: 28,
             borderBottom: '1px solid rgba(200,160,80,0.2)',
           }}>
-            <div style={{
-              width: 46,
-              height: 46,
-              borderRadius: '50%',
-              background: 'linear-gradient(135deg, #b8860b 0%, #f0c040 50%, #c9a227 100%)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              boxShadow: '0 4px 18px rgba(240,192,64,0.35)',
-              marginBottom: 9,
-            }}>
-              <span style={{ fontSize: 22 }}>🌸</span>
-            </div>
+            <img
+              src="/logo.png"
+              alt="Madame Lân Logo"
+              style={{
+                width: 60,
+                height: 60,
+                borderRadius: 14,
+                objectFit: 'cover',
+                boxShadow: '0 4px 18px rgba(168,36,36,0.4), 0 0 0 2px rgba(240,192,64,0.3)',
+                marginBottom: 10,
+              }}
+            />
             <div style={{
               fontFamily: "'Playfair Display', serif",
               fontWeight: 700,

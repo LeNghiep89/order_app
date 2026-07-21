@@ -97,18 +97,21 @@ export default function PaymentScreen() {
             <span>Quay lại Món đã gọi</span>
           </button>
 
-          <div style={{ textAlign: 'center' }}>
-            <div style={{
-              fontFamily: "'Playfair Display', serif",
-              fontWeight: 700,
-              fontSize: isTablet ? 20 : 17,
-              color: '#f0c040',
-              lineHeight: 1.1,
-            }}>
-              Yêu cầu Dịch vụ & Thanh toán
-            </div>
-            <div style={{ fontSize: 11, color: 'rgba(240,192,64,0.6)', marginTop: 2 }}>
-              Thanh toán trực tiếp tại bàn hoặc yêu cầu phục vụ
+          <div style={{ textAlign: 'center', display: 'flex', alignItems: 'center', gap: 10 }}>
+            <img src="/logo.png" alt="Madame Lân Logo" style={{ width: 32, height: 32, borderRadius: 7, objectFit: 'cover' }} />
+            <div>
+              <div style={{
+                fontFamily: "'Playfair Display', serif",
+                fontWeight: 700,
+                fontSize: isTablet ? 20 : 17,
+                color: '#f0c040',
+                lineHeight: 1.1,
+              }}>
+                Yêu cầu Dịch vụ & Thanh toán
+              </div>
+              <div style={{ fontSize: 11, color: 'rgba(240,192,64,0.6)', marginTop: 2 }}>
+                Thanh toán trực tiếp tại bàn hoặc yêu cầu phục vụ
+              </div>
             </div>
           </div>
 

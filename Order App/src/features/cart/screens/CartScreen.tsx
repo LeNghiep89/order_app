@@ -50,7 +50,7 @@ export default function CartScreen({ isSidebar = false }: CartScreenProps) {
   return (
     <div style={containerStyle}>
       {/* Header (Hidden in Sidebar mode) */}
-      {!isSidebar && (
+      {!isSidebar ? (
         <div style={{
           position: 'sticky', top: 0, zIndex: 50,
           background: '#fff',
@@ -64,7 +64,8 @@ export default function CartScreen({ isSidebar = false }: CartScreenProps) {
                 <polyline points="15 18 9 12 15 6"/>
               </svg>
             </button>
-            <div style={{ flex: 1, textAlign: 'center' }}>
+            <div style={{ flex: 1, textAlign: 'center', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+              <img src="/logo.png" alt="Madame Lân Logo" style={{ width: 28, height: 28, borderRadius: 6, objectFit: 'cover' }} />
               <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: 18, color: '#1e0f04' }}>Giỏ hàng</div>
             </div>
             <div style={{
@@ -79,6 +80,27 @@ export default function CartScreen({ isSidebar = false }: CartScreenProps) {
               <span style={{ fontSize: 11.5, color: '#8a5010', fontWeight: 700, letterSpacing: '0.05em' }}>Bàn {tableId}</span>
             </div>
           </div>
+        </div>
+      ) : (
+        <div style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+          padding: '14px 16px', borderBottom: '1px solid rgba(200,160,80,0.2)', background: '#fff',
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            <img src="/logo.png" alt="Madame Lân Logo" style={{ width: 30, height: 30, borderRadius: 7, objectFit: 'cover', boxShadow: '0 2px 6px rgba(0,0,0,0.15)' }} />
+            <div>
+              <div style={{ fontFamily: "'Playfair Display', serif", fontWeight: 700, fontSize: 15, color: '#1e0f04', lineHeight: 1.1 }}>
+                Bữa ăn của bạn
+              </div>
+              <div style={{ fontSize: 11, color: '#8a6040' }}>Bàn {tableId}</div>
+            </div>
+          </div>
+          <span style={{
+            fontSize: 11, fontWeight: 700, color: '#b8860b', background: '#fff8e8',
+            border: '1px solid #e8d5a0', padding: '3px 8px', borderRadius: 12,
+          }}>
+            Tablet Mode
+          </span>
         </div>
       )}
 

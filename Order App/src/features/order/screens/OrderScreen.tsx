@@ -83,18 +83,21 @@ export default function OrderScreen() {
           </button>
 
           {/* Title */}
-          <div style={{ textAlign: 'center' }}>
-            <div style={{
-              fontFamily: "'Playfair Display', serif",
-              fontWeight: 700,
-              fontSize: isTablet ? 20 : 17,
-              color: '#f0c040',
-              lineHeight: 1.1,
-            }}>
-              Danh sách món ăn đã gọi
-            </div>
-            <div style={{ fontSize: 11, color: 'rgba(240,192,64,0.6)', marginTop: 2 }}>
-              Gọi lúc: <strong style={{ color: '#fff' }}>{ts}</strong> · {totalItemCount} phần món
+          <div style={{ textAlign: 'center', display: 'flex', alignItems: 'center', gap: 10 }}>
+            <img src="/logo.png" alt="Madame Lân Logo" style={{ width: 32, height: 32, borderRadius: 7, objectFit: 'cover' }} />
+            <div>
+              <div style={{
+                fontFamily: "'Playfair Display', serif",
+                fontWeight: 700,
+                fontSize: isTablet ? 20 : 17,
+                color: '#f0c040',
+                lineHeight: 1.1,
+              }}>
+                Danh sách món ăn đã gọi
+              </div>
+              <div style={{ fontSize: 11, color: 'rgba(240,192,64,0.6)', marginTop: 2 }}>
+                Gọi lúc: <strong style={{ color: '#fff' }}>{ts}</strong> · {totalItemCount} phần món
+              </div>
             </div>
           </div>
 
