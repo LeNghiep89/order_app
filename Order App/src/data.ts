@@ -1,0 +1,121 @@
+import type { Dish } from './types'
+
+export const CATEGORIES = ['Tất cả', 'Sợi', 'Bánh & Cuốn', 'Gà & Bò', 'Hải sản', 'Đồ uống', 'Tráng miệng']
+
+export const ALL_DISHES: Dish[] = [
+  {
+    id: 1,
+    name: 'Phở Bò Tái Chín',
+    desc: 'Nước dùng hầm 12 giờ, thịt bò Úc thượng hạng, bánh phở tươi',
+    price: 120000,
+    originalPrice: 135000,
+    image: 'https://images.unsplash.com/photo-1569050467447-ce54b3bbc37d?w=400&h=400&fit=crop&auto=format',
+    category: 'Sợi',
+    modifiers: ['Nhiều hành', 'Ít hành', 'Không hành', 'Tái nhiều', 'Chín kỹ', 'Thêm gân'],
+  },
+  {
+    id: 2,
+    name: 'Bún Bò Huế',
+    desc: 'Vị cay nồng đặc trưng miền Trung, giò heo, chả cua thứ thiệt',
+    price: 110000,
+    image: 'https://images.unsplash.com/photo-1582878826629-29b7ad1cdc43?w=400&h=400&fit=crop&auto=format',
+    category: 'Sợi',
+    modifiers: ['Không cay', 'Ít cay', 'Cay vừa', 'Rất cay', 'Thêm giò heo'],
+  },
+  {
+    id: 3,
+    name: 'Bánh Hỏi Thịt Nướng',
+    desc: 'Bánh hỏi thủ công, thịt heo nướng than, mỡ hành xanh thơm ngậy',
+    price: 135000,
+    image: 'https://images.unsplash.com/photo-1701480254009-53c2bf8a82ee?w=400&h=400&fit=crop&auto=format',
+    category: 'Bánh & Cuốn',
+    modifiers: ['Không cay', 'Nước sốt thêm', 'Thịt thêm', 'Không mỡ hành'],
+  },
+  {
+    id: 4,
+    name: 'Bánh Xèo Miền Trung',
+    desc: 'Vỏ giòn rụm, nhân tôm thịt, giá đỗ, nước chấm đặc biệt nhà hàng',
+    price: 95000,
+    image: 'https://images.unsplash.com/photo-1665199021085-d6792847a468?w=400&h=400&fit=crop&auto=format',
+    category: 'Bánh & Cuốn',
+    modifiers: ['Không cay', 'Ít cay', 'Thêm tôm', 'Không giá đỗ'],
+  },
+  {
+    id: 5,
+    name: 'Gỏi Cuốn Tôm Thịt',
+    desc: 'Tôm sú tươi, bún gạo, rau thơm, sốt đậu phộng mè rang',
+    price: 65000,
+    image: 'https://images.unsplash.com/photo-1560162071-da4c4a91077a?w=400&h=400&fit=crop&auto=format',
+    category: 'Bánh & Cuốn',
+    modifiers: ['Không rau mùi', 'Thêm tôm', 'Sốt tương đen'],
+  },
+  {
+    id: 6,
+    name: 'Bò Lúc Lắc',
+    desc: 'Bò phi lê xào tỏi bơ, khoai tây chiên, salad cà chua',
+    price: 175000,
+    originalPrice: 195000,
+    image: 'https://images.unsplash.com/photo-1544025162-d76694265947?w=400&h=400&fit=crop&auto=format',
+    category: 'Gà & Bò',
+    modifiers: ['Không cay', 'Thêm khoai tây', 'Bít tết lòng đào', 'Chín kỹ'],
+  },
+  {
+    id: 7,
+    name: 'Gà Nướng Mắm Gừng',
+    desc: 'Gà ta thả vườn nướng than hoa, ướp mắm gừng bí truyền',
+    price: 155000,
+    image: 'https://images.unsplash.com/photo-1598103442097-8b74394b95c4?w=400&h=400&fit=crop&auto=format',
+    category: 'Gà & Bò',
+    modifiers: ['Không cay', 'Cay vừa', 'Thêm sốt mắm'],
+  },
+  {
+    id: 8,
+    name: 'Cà Phê Sữa Đá',
+    desc: 'Robusta Đắk Lắk rang mộc, sữa đặc ông Thọ, đá viên',
+    price: 45000,
+    image: 'https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=400&h=400&fit=crop&auto=format',
+    category: 'Đồ uống',
+    modifiers: ['Ít đá', 'Không đá', 'Ít ngọt', 'Thêm sữa'],
+  },
+  {
+    id: 9,
+    name: 'Nước Chanh Dây',
+    desc: 'Chanh dây tươi Đà Lạt, đường thốt nốt, đá bào mịn',
+    price: 40000,
+    image: 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400&h=400&fit=crop&auto=format',
+    category: 'Đồ uống',
+    modifiers: ['Ít đường', 'Không đường', 'Thêm đá'],
+  },
+  {
+    id: 10,
+    name: 'Coca-Cola',
+    desc: 'Lon 330ml, phục vụ lạnh kèm đá và chanh',
+    price: 35000,
+    image: 'https://images.unsplash.com/photo-1554866585-cd94860890b7?w=400&h=400&fit=crop&auto=format',
+    category: 'Đồ uống',
+    modifiers: ['Không đá', 'Thêm chanh', 'Thêm đá'],
+  },
+  {
+    id: 11,
+    name: 'Nước Ép Ổi',
+    desc: 'Ổi lê tươi xay nguyên chất, ít đường, bổ sung vitamin',
+    price: 45000,
+    image: 'https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400&h=400&fit=crop&auto=format',
+    category: 'Đồ uống',
+    modifiers: ['Ít đường', 'Không đường', 'Thêm đá'],
+  },
+  {
+    id: 12,
+    name: 'Bánh Flan Cà Phê',
+    desc: 'Flan mịn màng trứng gà, caramel đắng, espresso nhẹ',
+    price: 55000,
+    image: 'https://images.unsplash.com/photo-1587536849024-cb7c2932a037?w=400&h=400&fit=crop&auto=format',
+    category: 'Tráng miệng',
+    modifiers: ['Thêm kem tươi', 'Không caramel'],
+  },
+]
+
+export const UPSELL_DISHES = ALL_DISHES.filter(d => d.category === 'Đồ uống' || d.id === 12)
+
+export const fmt = (n: number) =>
+  n.toLocaleString('vi-VN') + ' VND'

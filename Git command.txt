@@ -1,0 +1,101 @@
+Phần A - Setup môi trường (1 lần)
+I. Cài đặt các công cụ bắt buộc
+1.  Git
+git --version
+2. Node.js (để chạy npm)
+node -v
+npm -v
+2. Code Editor
+- VS code
+
+II. Cấu hình Git lần đầu
+git config --global user.name "Ten Cua Ban"
+git config --global user.email "email@gmail.com"
+
+Kiểm tra:
+git config --list
+
+
+Phần B - Các khái niệm GIT cốt lõi
+GIT là gì?
+- GIT là hệ thống quản lý lịch sử thay đổi mã nguồn
+- Git quản lý 3 vùng: Working Directory (file đang sửa) -> Staging Area (Đã chọn) -> Repository (Đã lưu)
+
+Repository:
+- Local repo: nằm trên máy
+- Remote repo: Github/GitLab/ Bibutket
+
+Branch:
+- Brand: nhánh làm việc
+- main/master: nhánh chính
+- Mỗi feature = 1 branch riêng
+
+Phần 3: Các lệnh GIT cơ bản
+Clone dự án từ Github:
+git clone https://github.com/username/project-name.git
+cd project-name
+
+Kiểm tra trạng thái
+git status
+
+Xem lịch sử commit
+git log
+hoặc git log --oneline
+
+Thêm file vào staging
+git add .
+hoặc git add src/App.js
+
+Commit (lưu lại 1 mốc)
+git commit -m "Init project"
+Nguyên tắc commit:
+<type>:<mô tả ngắn>
+Ví dụ: feat: add login page
+fix: api call error
+
+Đẩy code lên GitHub
+git push origin main
+
+Lấy code mới về:
+git pull
+
+Phần D - Làm việc với Branch
+Xem danh sách branch
+git branch
+
+Tạo branch mới
+git checkout main
+
+Merge branch
+git checkout main
+git merge feature/login
+
+Phần E - Nguyên tắc làm việc GIT chuẩn
+Không commit
+node_modules
+file .env
+
+Luôn pull trước khi code
+git pull
+
+1 task -> 1 branch
+Commit nhỏ, rõ ràng
+Không sửa code trực tiếp trên main
+
+
+
+
+Phần E - Đổi dự án và đẩy code lên GIT:
+1. Kiểm tra remote hiện tại
+git remote -v
+
+2. Đổi sang repository mới:
+git remote set-url origin https://github.com/username/new-project.git
+
+Kiểm tra lại:
+git remote -v
+
+3. Push code lên repo mới
+git branch -M main
+git push -u origin main
+

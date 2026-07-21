@@ -1,0 +1,54 @@
+I. Các bước chạy source cơ bản:
+1. Nguồn source từ Figma Make --> project FrontEnd
+2. Kiểm tra thư mục source có các file:
+	+ package.json
+	+ scr/
+	+ public/
+	+ index.html
+	+ vite.config.ts / vite.config.js
+3. Cài môi trường cho lần đầu tiên:
+ + cài môi trường local
+    . node -v
+    . npm -v
+ + cài dependency:
+    . npm install
+    . Nếu lỗi: npm install --legacy-peer-deps
+4. Chạy local:
+ + npm run dev 
+ + Hoặc: npm start
+- Mở trình duyệt theo link: http://localhost:5173
+
+
+II. Xử lý lỗi:
+1. Lỗi PowerShell chặn script execution của window
+- Lỗi: npm : File C:\Program Files\nodejs\npm.ps1 cannot be loaded because running scripts is disabled on this system.
+- Xử lý lỗi:
+ + Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+ + Y
+ + Kiểm tra lại: npm -v ; node -v
+
+2. Source chạy nhưng CSS/Tailwind chưa được load hoặc classnName không đúng nên HTML dang hiển thị gần như raw
+- Lỗi: UI từ Figma Make dùng Tailwind classes (flex, grid, px-6 . . .) vì vậy CSS không render đúng.
+- Xử lý:
+ + Cài Tailwind: npm install -D tailwindcss @tailwindcss/vite
+ + Sửa file: vite.config.ts
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import tailwindcss from '@tailwindcss/vite'
+
+export default defineConfig({
+  plugins: [
+    react(),
+    tailwindcss(),
+  ],
+})
+ + Sửa file: src/index.css: xoá toàn bộ nội dung hiện tại và thay bằng:
+@import "tailwindcss";
+
+html,
+body,
+#root {
+  margin: 0;
+  min-height: 100%;
+}
+ + restart project: Ctrl + C --. npm run dev

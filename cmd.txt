@@ -1,0 +1,43 @@
+I. Lệnh cơ bản trong CMD
+1. Thư mục và file
+dir                :: liệt kê file/thư mục
+cd                 :: xem thư mục hiện tại
+cd folder          :: vào thư mục
+cd ..              :: lùi 1 cấp
+cd \               :: về ổ gốc
+mkdir test         :: tạo thư mục
+rmdir test         :: xoá thư mục rỗng
+rmdir /s test      :: xoá thư mục + nội dung
+del file.txt       :: xoá file
+copy a.txt b.txt   :: copy file
+move a.txt b.txt   :: di chuyển / đổi tên
+
+2. Xem nội dung file
+type file.txt
+more file.txt
+
+3. Tìm kiếm
+find "error" log.txt
+findstr /i error *.log
+
+II. Lệnh mạng và debug
+ipconfig           :: xem IP
+ipconfig /all      :: chi tiết network
+ping google.com    :: test kết nối
+tracert google.com :: trace route
+nslookup api.com   :: kiểm tra DNS
+netstat -an        :: xem port
+
+III. Lệnh HTTP/API trong CMD
+1. curl
+curl http://api.example.com/users
+
+POST JSON
+curl -X POST https://api.example.com/login ^
+ -H "Content-Type: application/json" ^
+ -d "{\"email\":\"a@b.com\",\"password\":\"123\"}"
+
+Có token:
+curl -H "Authorization: Bearer TOKEN" https://api.example.com/me
+
+Lưu ý: CMD dùng ^ để xuống dòng
